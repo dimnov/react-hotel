@@ -19,7 +19,6 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const booking = {};
   const { booking, isLoading } = useBooking();
   const moveBack = useMoveBack();
 

@@ -5,6 +5,9 @@ import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
 
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import Menus from "../../ui/Menus";
+import { HiEye } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 // import { formatDistanceFromNow } from "../../utils/helpers";
 
 const Cabin = styled.div`
@@ -48,11 +51,17 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
+  const navigate = useNavigate();
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
     "checked-out": "silver",
   };
+
+  function handleDetails() {
+    navigate(`/bookings/${bookingId}`);
+  }
 
   return (
     <Table.Row>
@@ -62,7 +71,6 @@ function BookingRow({
         <span>{email}</span>
       </Stacked>
 
-      {/* formatDistanceFromNow(startDate)} &rarr; */}
       <Stacked>
         <span>
           {isToday(new Date(startDate)) ? "Today" : formatDistanceFromNow(startDate)} &rarr;{" "}
@@ -75,6 +83,17 @@ function BookingRow({
       </Stacked>
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
       <Amount>{formatCurrency(totalPrice)}</Amount>
+
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button icon={<HiEye />} onClick={handleDetails}>
+            See details
+          </Menus.Button>
+          <Menus.Button icon={<HiEye />}>See details</Menus.Button>
+          <Menus.Button icon={<HiEye />}>See details</Menus.Button>
+        </Menus.List>
+      </Menus.Menu>
     </Table.Row>
   );
 }

@@ -82,7 +82,7 @@ function Menus({ children }) {
 }
 
 function Toggle({ id }) {
-  const { openId, close, open, position, setPosition } = useContext(MenusContext);
+  const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
     const rect = e.target.closest("button").getBoundingClientRect();

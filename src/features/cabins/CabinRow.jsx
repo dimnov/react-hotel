@@ -38,7 +38,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
-  const { isCreating, createCabin } = useCreateCabin();
+  const { createCabin } = useCreateCabin();
 
   const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin;
 
@@ -60,6 +60,7 @@ function CabinRow({ cabin }) {
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+
       <div>
         <Modal>
           <Menus.Menu>

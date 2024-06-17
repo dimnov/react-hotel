@@ -6,9 +6,8 @@ import Table from "../../ui/Table";
 
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
 import Menus from "../../ui/Menus";
-import { HiEye } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiEye } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-// import { formatDistanceFromNow } from "../../utils/helpers";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -63,6 +62,10 @@ function BookingRow({
     navigate(`/bookings/${bookingId}`);
   }
 
+  function handleCheckIn() {
+    navigate(`/checkin/${bookingId}`);
+  }
+
   return (
     <Table.Row>
       <Cabin>{cabinName}</Cabin>
@@ -90,8 +93,13 @@ function BookingRow({
           <Menus.Button icon={<HiEye />} onClick={handleDetails}>
             See details
           </Menus.Button>
-          <Menus.Button icon={<HiEye />}>See details</Menus.Button>
-          <Menus.Button icon={<HiEye />}>See details</Menus.Button>
+
+          {/* <Menus.Button icon={<HiEye />}>See details</Menus.Button> */}
+          {status === "unconfirmed" && (
+            <Menus.Button icon={<HiArrowDownOnSquare />} onClick={handleCheckIn}>
+              Check in
+            </Menus.Button>
+          )}
         </Menus.List>
       </Menus.Menu>
     </Table.Row>

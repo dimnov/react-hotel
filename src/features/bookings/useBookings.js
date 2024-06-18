@@ -19,7 +19,7 @@ export function useBookings() {
     const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
     const {
-        isLoading,
+        isPending,
         data: { data: bookings, count } = {},
         error
     } = useQuery({
@@ -44,5 +44,5 @@ export function useBookings() {
         preFetchPage(page - 1);
     }
 
-    return { isLoading, error, bookings, count };
+    return { isPending, error, bookings, count };
 }

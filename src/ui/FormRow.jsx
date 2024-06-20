@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
 
 const StyledFormRow = styled.div`
   display: grid;
@@ -38,11 +38,13 @@ const Error = styled.span`
 
 function FormRow({ label, error, children }) {
   return (
-    <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
-      {children}
-      {error && <Error>{error}</Error>}
-    </StyledFormRow>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "variation"}>
+      <StyledFormRow>
+        {label && <Label htmlFor={children.props.id}>{label}</Label>}
+        {children}
+        {error && <Error>{error}</Error>}
+      </StyledFormRow>
+    </StyleSheetManager>
   );
 }
 

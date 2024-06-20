@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -63,9 +63,11 @@ const TableContext = createContext();
 
 function Table({ columns, children }) {
   return (
-    <TableContext.Provider value={{ columns }}>
-      <StyledTable role="table">{children}</StyledTable>
-    </TableContext.Provider>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "columns"}>
+      <TableContext.Provider value={{ columns }}>
+        <StyledTable role="table">{children}</StyledTable>
+      </TableContext.Provider>
+    </StyleSheetManager>
   );
 }
 

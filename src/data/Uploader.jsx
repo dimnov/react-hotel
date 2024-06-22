@@ -86,10 +86,10 @@ async function createBookings() {
 }
 
 function Uploader() {
-  const [isPending, setisPending] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   async function uploadAll() {
-    setisPending(true);
+    setIsPending(true);
     // Bookings need to be deleted FIRST
     await deleteBookings();
     await deleteGuests();
@@ -100,14 +100,14 @@ function Uploader() {
     await createCabins();
     await createBookings();
 
-    setisPending(false);
+    setIsPending(false);
   }
 
   async function uploadBookings() {
-    setisPending(true);
+    setIsPending(true);
     await deleteBookings();
     await createBookings();
-    setisPending(false);
+    setIsPending(false);
   }
 
   return (

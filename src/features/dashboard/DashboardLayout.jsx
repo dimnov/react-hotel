@@ -17,7 +17,7 @@ const StyledDashboardLayout = styled.div`
 
 function DashboardLayout() {
   const { bookings, isPending: isPendingBookings } = useRecentBookings();
-  const { stays, confirmedStays, isPending: isPendingStays, numDays } = useRecentStays();
+  const { confirmedStays, isPending: isPendingStays, numDays } = useRecentStays();
   const { cabins, isPending: isPendingCabins } = useCabins();
 
   const cabinCount = cabins?.length;

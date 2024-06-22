@@ -9,11 +9,7 @@ export function useSignup() {
         onSuccess: () => {
             toast.success('Account successfully created')
         },
-
-        // onError: () => {
-        //     toast.error('There was a problem with creating a user')
-        // }
-    })
+    });
 
     return { signup, isPending, reset };
 }
